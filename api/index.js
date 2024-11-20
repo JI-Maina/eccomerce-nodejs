@@ -6,6 +6,8 @@ const dbConnect = require("./config/dbConnect");
 const authRouter = require("./routes/authRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
