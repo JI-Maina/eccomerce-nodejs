@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const dbConnect = require("./config/dbConnect");
 const authRouter = require("./routes/authRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ dbConnect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // app.use("/", (req, res) => {
 //   res.send("Hello from server");
