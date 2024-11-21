@@ -89,6 +89,43 @@ const updateUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
+// Block user
+const blockUser = expressAsyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const findUser = await User.findByIdAndUpdate(
+      id,
+      {
+        isBlocked: true,
+      },
+      { new: true }
+    );
+
+    res.json({ message: "User Blocked" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+const unBlockUser = expressAsyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const findUser = await User.findByIdAndUpdate(
+      id,
+      {
+        isBlocked: false,
+      },
+      { new: true }
+    );
+
+    res.json({ message: "User Un-blocked" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createUser,
   loginUser,
@@ -96,4 +133,6 @@ module.exports = {
   getAUser,
   updateUser,
   deleteAUser,
+  blockUser,
+  unBlockUser,
 };
